@@ -7,7 +7,7 @@ export interface AvatarProps {
 
 const Avatar = ({ src, alt, size, className = "" }: AvatarProps) => {
   const generateAvatar = (name: string) => {
-    return `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`;
+    return `https://api.dicebear.com/7.x/thumbs/svg?seed=${name}`;
   };
 
   const imageSrc = src || generateAvatar(alt);
