@@ -1,11 +1,11 @@
 export interface ButtonProps {
-  title: string;
+  children: React.ReactNode;
   className?: string;
   variants: "primary" | "secondary" | "transparent" | "outline" | "custom";
   size?: "lg" | "thinLg" | "md" | "thinMd" | "sm";
 }
 const Button = ({
-  title,
+  children,
   variants,
   size = "sm",
   className = "",
@@ -35,7 +35,7 @@ const Button = ({
 
   return (
     <button className={combinedClassName} {...props}>
-      {title}
+      {children}
     </button>
   );
 };
