@@ -8,7 +8,7 @@ export default {
   component: Badge,
   tags: ["autodocs"],
   parameters: {
-    layout: "centered", // 중앙 정렬
+    layout: "centered",
   },
   argTypes: {
     title: {
@@ -24,7 +24,6 @@ type Story = StoryObj<typeof Badge>;
 export const Default: Story = {
   args: {
     title: "BEST",
-    className: "",
   },
 };
 
@@ -39,4 +38,18 @@ export const Urgent: Story = {
   args: {
     title: "URGENT",
   },
+};
+
+// 모든 뱃지 타입 보기
+export const AllTypes: Story = {
+  args: {
+    title: "BEST",
+  },
+  render: () => (
+    <div className="flex gap-4 items-center">
+      {(Object.keys(BADGE_VARIANTS) as BadgeKey[]).map((key) => (
+        <Badge key={key} title={key} />
+      ))}
+    </div>
+  ),
 };
