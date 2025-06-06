@@ -11,7 +11,7 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   args: {
-    title: "입찰하기",
+    children: "입찰하기",
     className: "",
     variants: "primary",
   },
@@ -19,7 +19,7 @@ export const Default: Story = {
 
 export const Secondary: Story = {
   args: {
-    title: "회원가입",
+    children: "회원가입",
     className: "bg-black",
     variants: "secondary",
   },
@@ -27,15 +27,23 @@ export const Secondary: Story = {
 
 export const Transparent: Story = {
   args: {
-    title: "더보기",
+    children: "더보기",
     className: "",
     variants: "transparent",
   },
 };
 
+export const Outline: Story = {
+  args: {
+    children: "입찰하기",
+    className: "",
+    variants: "outline",
+  },
+};
+
 export const Disabled: Story = {
   args: {
-    title: "입찰하기",
+    children: "입찰하기",
     className: "",
     variants: "primary",
     disabled: true,
