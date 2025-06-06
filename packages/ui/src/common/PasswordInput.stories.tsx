@@ -11,8 +11,7 @@ type Story = StoryObj<typeof PasswordInput>;
 
 export const Default: Story = {
   args: {
-    // LeftIcon: TempIcon,
+    LeftIcon: TempIcon,
     PasswordEyeIcon: TempIcon,
-    // className: "bg-blue-500 hover:bg-blue-600",
   },
 };
