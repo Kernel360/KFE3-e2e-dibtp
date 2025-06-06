@@ -5,15 +5,13 @@ interface AuthInputProps {
   setText: React.Dispatch<React.SetStateAction<string>>;
   LeftIcon?: () => React.ReactNode;
   PasswordEyeIcon?: () => React.ReactNode;
-  placeHolder?: string;
 }
 
-export default function AuthInput({
+export default function PasswordInput({
   text,
   setText,
   LeftIcon,
   PasswordEyeIcon,
-  placeHolder,
 }: AuthInputProps) {
   const [watchPassword, setWatchPassword] = useState<boolean>(false);
   const textBaseClassName =
@@ -36,13 +34,14 @@ export default function AuthInput({
 
       <input
         //FIXME - 텍스트 위치 이상함
+        //FIXME - placeholder 점 8개가 뭔지 모르겠음
         type={watchPassword ? "text" : "password"}
         className={
           LeftIcon
             ? `${textBaseClassName} pl-[55px]`
             : `${textBaseClassName} pl-[15px]`
         }
-        placeholder={placeHolder}
+        placeholder={LeftIcon ? "비밀번호" : "점8개"}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

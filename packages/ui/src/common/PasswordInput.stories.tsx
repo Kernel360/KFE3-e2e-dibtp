@@ -1,18 +1,17 @@
 import type { StoryObj, Meta } from "@storybook/react-vite";
-import AuthInput from "./authInput";
 import TempIcon from "./TempIcon";
+import PasswordInput from "./PasswordInput";
 
 export default {
-  component: AuthInput,
+  component: PasswordInput,
   tags: ["autodocs"],
-} satisfies Meta<typeof AuthInput>;
+} satisfies Meta<typeof PasswordInput>;
 
-type Story = StoryObj<typeof AuthInput>;
+type Story = StoryObj<typeof PasswordInput>;
 
 export const Default: Story = {
   args: {
-    placeHolder: "hi",
-    LeftIcon: TempIcon,
+    // LeftIcon: TempIcon,
     PasswordEyeIcon: TempIcon,
     // className: "bg-blue-500 hover:bg-blue-600",
   },
