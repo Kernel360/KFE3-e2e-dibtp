@@ -15,7 +15,7 @@ export default function PasswordInput({
 }: AuthInputProps) {
   const [watchPassword, setWatchPassword] = useState<boolean>(false);
   const textBaseClassName =
-    "w-full h-full pt-[16px] text-base shadow-xl rounded-xl";
+    "w-full h-full py-[16px] text-base shadow-xl rounded-xl";
   return (
     <div className="relative w-[343px] h-[48px]">
       {LeftIcon && (
@@ -31,10 +31,7 @@ export default function PasswordInput({
           <PasswordEyeIcon />
         </button>
       )}
-
       <input
-        //FIXME - 텍스트 위치 이상함
-        //FIXME - placeholder 점 8개가 뭔지 모르겠음
         type={watchPassword ? "text" : "password"}
         className={
           LeftIcon

@@ -20,7 +20,7 @@ export default function RegularInput({
   heightSize,
 }: AuthInputProps) {
   const textBaseClassName =
-    "w-full h-full pt-[16px] text-base shadow-xl rounded-xl";
+    "w-full h-full py-[16px] text-base shadow-xl rounded-xl";
 
   const width = { md: "w-[225px]", lg: "w-[343px]", xl: "w-[355px]" };
   const height = { md: "h-[34px]", lg: "h-[48px]" };
@@ -42,7 +42,6 @@ export default function RegularInput({
       )}
 
       <input
-        //FIXME - 텍스트 위치 이상함
         className={
           LeftIcon
             ? `${textBaseClassName} pl-[55px]`
