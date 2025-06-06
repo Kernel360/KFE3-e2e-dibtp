@@ -3,8 +3,8 @@ import { useState } from "react";
 interface AuthInputProps {
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
-  LeftIcon?: () => React.ReactNode;
-  PasswordEyeIcon?: () => React.ReactNode;
+  LeftIcon?: React.ElementType;
+  PasswordEyeIcon?: React.ElementType;
 }
 
 export default function PasswordInput({

@@ -1,8 +1,8 @@
 interface AuthInputProps {
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
-  LeftIcon?: () => React.ReactNode;
-  RightIcon?: () => React.ReactNode;
+  LeftIcon?: React.ElementType;
+  RightIcon?: React.ElementType;
   RightIconFunc?: () => void;
   placeHolder?: string;
   widthSize: "md" | "lg" | "xl";
