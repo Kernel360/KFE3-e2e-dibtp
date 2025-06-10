@@ -5,7 +5,7 @@ export interface CardProps {
   title: string;
 }
 
-export const Card = ({ imageSrc, title }: CardProps) => (
+const Card = ({ imageSrc, title }: CardProps) => (
   <div className="rounded-lg shadow-md">
     <Image
       src={imageSrc}
@@ -17,3 +17,5 @@ export const Card = ({ imageSrc, title }: CardProps) => (
     <h3 className="p-4 text-lg font-semibold">{title}</h3>
   </div>
 );
+
+export default Card;
