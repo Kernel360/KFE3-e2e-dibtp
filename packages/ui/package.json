@@ -18,9 +18,7 @@
     "check-types": "tsc --noEmit",
     "dev:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
     "dev:components": "tsc --watch",
-    "lint": "eslint src --max-warnings 0",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "lint": "eslint src --max-warnings 0"
   },
   "peerDependencies": {
     "react": "^19"
@@ -29,15 +27,10 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@storybook/addon-docs": "^9.0.5",
-    "@storybook/addon-onboarding": "^9.0.5",
-    "@storybook/react-vite": "^9.0.5",
+    "@storybook/nextjs": "^9.0.6",
     "@tailwindcss/cli": "^4.1.5",
-    "@tailwindcss/vite": "^4.1.8",
     "@types/react": "^19.1.0",
     "eslint": "^9.28.0",
-    "eslint-plugin-storybook": "^9.0.5",
-    "storybook": "^9.0.5",
     "tailwindcss": "^4.1.5",
     "typescript": "5.8.2"
   }

@@ -1,5 +1,5 @@
-import type { Preview } from '@storybook/react-vite';
-import '../src/styles.css';
+import type { Preview } from '@storybook/nextjs';
+import '../stories/global-styles.css';
 
 const preview: Preview = {
   parameters: {
@@ -8,6 +8,10 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+
+    a11y: {
+      test: 'todo',
     },
   },
 };
