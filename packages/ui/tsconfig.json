@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": ["src", "**/*.cjs", "postcss.config.mjs", "postcss.config.js"],
   "exclude": ["dist", "build", "node_modules"]
 }
