@@ -1,32 +1,6 @@
 import Image from 'next/image';
-import { Card } from '@repo/ui/card';
-import { Gradient } from '@repo/ui/gradient';
-import { TurborepoLogo } from '@repo/ui/turborepo-logo';
 
-const LINKS = [
-  {
-    title: 'Docs',
-    href: 'https://turborepo.com/docs',
-    description: 'Find in-depth information about Turborepo features and API.',
-  },
-  {
-    title: 'Learn',
-    href: 'https://turborepo.com/docs/handbook',
-    description: 'Learn more about monorepos with our handbook.',
-  },
-  {
-    title: 'Templates',
-    href: 'https://turborepo.com/docs/getting-started/from-example',
-    description: 'Choose from over 15 examples and deploy with a single click.',
-  },
-  {
-    title: 'Deploy',
-    href: 'https://vercel.com/new',
-    description: 'Instantly deploy your Turborepo to a shareable URL with Vercel.',
-  },
-];
-
-export default function Page() {
+const Page = () => {
   return (
     <main className="flex flex-col items-center justify-between min-h-screen p-24">
       <div className="z-10 items-center justify-between w-full max-w-5xl font-mono text-sm lg:flex">
@@ -41,7 +15,15 @@ export default function Page() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            By <Image alt="Vercel Logo" className="dark:invert" height={24} priority src="/vercel.svg" width={100} />
+            By{' '}
+            <Image
+              alt="Vercel Logo"
+              className="dark:invert"
+              height={24}
+              priority
+              src="/vercel.svg"
+              width={100}
+            />
           </a>
         </div>
       </div>
@@ -52,17 +34,8 @@ export default function Page() {
             <div className="absolute min-w-[614px] min-h-[614px]">
               <Image alt="Turborepo" height={614} src="circles.svg" width={614} />
             </div>
-
-            <div className="absolute z-50 flex items-center justify-center w-64 h-64">
-              <Gradient className="opacity-90 w-[120px] h-[120px]" conic small />
-            </div>
-
-            <div className="flex justify-center items-center z-50">
-              <TurborepoLogo />
-            </div>
           </div>
 
-          <Gradient className="top-[-500px] opacity-[0.15] w-[1000px] h-[1000px]" conic />
           <div className="z-50 flex flex-col items-center justify-center gap-5 px-6 text-center lg:gap-6">
             <svg
               className="w-[160px] md:w-[200px] fill-black dark:fill-white"
@@ -84,14 +57,8 @@ export default function Page() {
           </div>
         </div>
       </div>
-
-      <div className="grid mb-32 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        {LINKS.map(({ title, href, description }) => (
-          <Card href={href} key={title} title={title}>
-            {description}
-          </Card>
-        ))}
-      </div>
     </main>
   );
-}
+};
+
+export default Page;
