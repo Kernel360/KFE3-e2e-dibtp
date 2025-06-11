@@ -2621,6 +2621,7 @@ packages:
       storybook: 9.0.8(@testing-library/dom@10.4.0)(prettier@3.5.3)
     dev: true
 
+
   /@storybook/addon-docs@9.0.8(@types/react@19.1.7)(storybook@9.0.8):
     resolution: {integrity: sha512-YRR8qHitwXVTJyn02YMrzd9mCKcuZWSKWt+J/ddFb8khGfLcAW+O0NohGeqMyM6XStLVDKKIKsMoTHggUwIFsA==}
     peerDependencies:
@@ -2739,7 +2740,6 @@ packages:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     dev: true
-
   /@storybook/nextjs@9.0.8(esbuild@0.25.5)(next@15.3.3)(react-dom@19.1.0)(react@19.1.0)(storybook@9.0.8)(typescript@5.8.2)(webpack@5.99.9):
     resolution: {integrity: sha512-THzwz9mce3JKS5d8w3p4ngC8ORNSHing5n6bT2EGNHRpk5uMaX3RTv6+iJIWUqJOJTPyDZ19sZvvryl7Yh7VRg==}
     engines: {node: '>=20.0.0'}
@@ -8841,6 +8841,7 @@ packages:
       acorn: 8.15.0
       webpack-virtual-modules: 0.6.2
     dev: true
+
 
   /unrs-resolver@1.7.13:
     resolution: {integrity: sha512-QUjCYKAgrdJpf3wA73zWjOrO7ra19lfnwQ8HRkNOLah5AVDqOS38UunnyhzsSL8AE+2/AGnAHxlr8cGshCP35A==}
