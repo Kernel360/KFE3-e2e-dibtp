@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { Card } from './Index';
+import Card from './Card';
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Design System/Base Components/Card',
   component: Card,
   parameters: {
     layout: 'padded',
