@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import { useEffect, useState } from 'react';
 import { Input, InputProps } from './Input';
-import { useState, useEffect } from 'react';
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
+  title: 'Design System/Base Components/Input',
   component: Input,
   tags: ['autodocs'],
   argTypes: {
