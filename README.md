@@ -1,59 +1,88 @@
-# Turborepo Tailwind CSS starter
+# Bootup 2nd Round - 3조
 
---
-This Turborepo starter is maintained by the Turborepo core team.
+---
 
-## Using this example
+## 시작하기
 
-Run the following command:
+### 1. 개발 서버 실행
 
-```sh
-npx create-turbo@latest -e with-tailwind
+```
+# 처음 시작한다면
+pnpm install
+
+# 루트 위치에서
+pnpm run dev
 ```
 
-## What's inside?
+### 2. 스토리북 실행
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Building packages/ui
-
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.ts`. This was chosen for several reasons:
-
-- Make sharing one `tailwind.config.ts` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
-
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.ts` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
-
-For example, in [tailwind.config.ts](packages/tailwind-config/tailwind.config.ts):
-
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
+```
+cd packages/ui
+pnpm run storybook
 ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+⚠️ 반드시 스토리북 실행 전에 개발 서버 구동할 것
 
-### Utilities
+## 기술스택
 
-This Turborepo has some additional tools already setup for you:
+- Framework: Next.js
+- Language: TypeScript
+- Styling: Tailwind CSS
+- Build System: Turborepo (Monorepo)
+- Package manager: pnpm
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## 프로젝트 구조
+
+```
+KFE3-bootup-2DooGoBoJa
+├─ apps                           # 웹 어플리케이션
+├─ packages                       # 공통 UI 라이브러리
+│  └─ ui
+│     ├─ .storybook/
+│     └─ src
+│        ├─ design-system/
+│        │  ├─ base-components
+│        │  │  ├─ Avatar/
+│        │  │  ├─ Badge/
+│        │  │  ├─ Card/
+│        │  │  └─ Input/
+│        │  └─ design-tokens/
+│        │     ├─ Colors.stories.tsx
+│        │     ├─ Typography.stories.tsx
+│        │     ├─ colors.ts
+│        │     ├─ index.ts
+│        │     └─ typography.ts
+│        ├─ global.css
+│        └─ utils
+│           └─ cn.ts
+├─ pnpm-lock.yaml
+├─ pnpm-workspace.yaml
+└─ turbo.json
+
+```
+
+### 히스토리
+
+- 부트업 1차 (7일) : 2조
+- 부트업 2차 (3일) : 3조 (노금영/신혜진/윤태호/이윤경/이준구)
+
+### 목적
+
+- **기존 구조 변경 및 개선 진행**
+- 다른 팀의 작업을 수정한 이유, 개선된 점, 적용한 설계 원칙 공유
+
+### 배경 및 진행 흐름
+
+- 설계 원칙 추가(Atomic Design 기반 원칙 + ⍺ )
+- 코딩 컨벤션, 파일명 컨벤션, eslint 및 prettier 규칙 설정
+  - [🔗[Bootup2] 3조 Notion에서 자세히 보기](https://www.notion.so/20da3f519ab88093b92ad2595392e2af?pvs=21)
+- **스토리북 메뉴 구조를 고려한** 기존 폴더구조 변경
+- 디자인 시스템 파일에 사용할 next.js tailwindcss 설정 (3일 중 2일 소요)
+- 컴포넌트 개선하기
+
+### 3조
+
+| [<img src="https://avatars.githubusercontent.com/u/136447530?v=4" width="150" height="150"/>](https://github.com/geumyoung00) | [<img src="https://avatars.githubusercontent.com/u/27764950?s=400&u=07e0fe49d204a77b0814e7f126cda53b6fc97fd1&v=4" width="150" height="150"/>](https://github.com/clara-shin) | [<img src="https://avatars.githubusercontent.com/u/84884775?v=4" width="150" height="150"/>](https://github.com/YunTaeHo) | [<img src="https://avatars.githubusercontent.com/u/94545944?v=4" width="150" height="150"/>](https://github.com/ktoo23) | [<img src="https://avatars.githubusercontent.com/u/145527618?v=4" width="150" height="150"/>](https://github.com/LeeJunGoo) |
+| :---------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
+|                                                            노금영                                                             |                                                                                    신혜진                                                                                    |                                                          윤태호                                                           |                                                         이윤경                                                          |                                                           이준구                                                            |
+|                                        [@geumyoung00](https://github.com/geumyoung00)                                         |                                                                 [@clara-shin](https://github.com/clara-shin)                                                                 |                                         [@YunTaeHo](https://github.com/YunTaeHo)                                          |                                          [@ktoo23](https://github.com/ktoo23)                                           |                                         [@LeeJunGoo](https://github.com/LeeJunGoo)                                          |
