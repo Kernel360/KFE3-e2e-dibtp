@@ -1,6 +1,8 @@
 # Bootup 2nd Round - 3조
 
-## 🚀 시작하기
+---
+
+## 시작하기
 
 ### 1. 개발 서버 실행
 
@@ -21,7 +23,43 @@ pnpm run storybook
 
 ⚠️ 반드시 스토리북 실행 전에 개발 서버 구동할 것
 
-<br>
+## 기술스택
+
+- Framework: Next.js
+- Language: TypeScript
+- Styling: Tailwind CSS
+- Build System: Turborepo (Monorepo)
+- Package manager: pnpm
+
+## 프로젝트 구조
+
+```
+KFE3-bootup-2DooGoBoJa
+├─ apps                           # 웹 어플리케이션
+├─ packages                       # 공통 UI 라이브러리
+│  └─ ui
+│     ├─ .storybook/
+│     └─ src
+│        ├─ design-system/
+│        │  ├─ base-components
+│        │  │  ├─ Avatar/
+│        │  │  ├─ Badge/
+│        │  │  ├─ Card/
+│        │  │  └─ Input/
+│        │  └─ design-tokens/
+│        │     ├─ Colors.stories.tsx
+│        │     ├─ Typography.stories.tsx
+│        │     ├─ colors.ts
+│        │     ├─ index.ts
+│        │     └─ typography.ts
+│        ├─ global.css
+│        └─ utils
+│           └─ cn.ts
+├─ pnpm-lock.yaml
+├─ pnpm-workspace.yaml
+└─ turbo.json
+
+```
 
 ### 히스토리
 
