@@ -1,7 +1,6 @@
-import { redirect } from 'next/navigation';
-import { setServerSession } from '@/services/login/setServerSession';
-import { createUserAccount } from '@/services/signup/createUserAccount';
-import { FormErrorMessage } from '../../../components/shared';
+import { signupAction } from '@/server-actions/signup/signupAction';
+
+import { FormErrorMessage } from '@/components/shared';
 
 import {
   SignupTitle,

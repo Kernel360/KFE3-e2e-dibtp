@@ -1,9 +1,7 @@
-import { redirect } from 'next/navigation';
-import { FormErrorMessage } from '../../../components/shared';
-import { loginAction } from '../../../server-actions/login/loginAction';
-import { setServerSession } from '@/services/login/setServerSession';
+import { loginAction } from '@/server-actions/login/loginAction';
 
 import { LoginTitle, EmailInput, PasswordInput, LoginButton, SignupInfo } from '@/components/login';
+import { FormErrorMessage } from '@/components/shared';
 
 const LoginPage = () => {
   return (
