@@ -1,7 +1,6 @@
 import type { Preview } from '@storybook/nextjs';
-import '../stories/global-styles.css';
 import '@repo/ui/styles.css';
-import '../../web/styles/globals.css';
+import '../styles/globals.css';
 
 const preview: Preview = {
   parameters: {
@@ -10,10 +9,6 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
-    },
-
-    a11y: {
-      test: 'todo',
     },
   },
 };
