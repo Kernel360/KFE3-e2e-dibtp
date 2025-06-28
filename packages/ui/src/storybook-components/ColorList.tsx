@@ -1,6 +1,6 @@
-import Section from "./Section";
-import SectionTitle from "./SectionTitle";
-import { getSemanticUtilityClass, getHexValue, getScaleColorValue } from '../utils/storybook';
+import Section from './Section';
+import SectionTitle from './SectionTitle';
+import { getUtilityClass, getHexValue, getSemanticColorValue } from '../utils/storybook';
 
 interface ColorListProps {
   title?: string;
@@ -10,13 +10,13 @@ interface ColorListProps {
   }[];
 }
 
-const ColorList = ({title, datas}: ColorListProps) => (
-  <Section className='flex flex-col gap-lg w-full'>
+const ColorList = ({ title, datas }: ColorListProps) => (
+  <Section className="flex flex-col gap-lg w-full">
     <SectionTitle>{title ?? 'Use Semantic'}</SectionTitle>
     {datas.map(({ name, value }) => {
       const hexValue = getHexValue(value);
-      const utilityClass = getSemanticUtilityClass(value);
-      
+      const utilityClass = getUtilityClass(value);
+
       return (
         <article key={name} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div
@@ -25,7 +25,7 @@ const ColorList = ({title, datas}: ColorListProps) => (
               height: '48px',
               borderRadius: '4px',
               border: '1px solid #e8e8e8',
-              backgroundColor: hexValue || getScaleColorValue(value),
+              backgroundColor: hexValue || getSemanticColorValue(value),
             }}
           />
           <div style={{ flex: 1 }}>
@@ -44,7 +44,9 @@ const ColorList = ({title, datas}: ColorListProps) => (
                 listStyle: 'none',
               }}
             >
-              <li>{`.${utilityClass}`}, {value},  {hexValue}</li>
+              <li>
+                {`.${utilityClass}`}, {value}, {hexValue}
+              </li>
             </ul>
           </div>
         </article>

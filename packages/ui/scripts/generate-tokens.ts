@@ -7,7 +7,10 @@ const __dirname = path.dirname(__filename);
 
 // CSS 파일 경로
 const TAILWIND_CONFIG_PATH = path.join(__dirname, '../../tailwind-config');
-const OUTPUT_PATH = path.join(__dirname, '../src/design-system/design-tokens/generated-tokens.ts');
+const OUTPUT_PATH = path.join(
+  __dirname,
+  '../src/design-system/design-tokens-stories/colors/generated-tokens.ts'
+);
 
 interface Variables {
   [key: string]: string;
@@ -19,8 +22,8 @@ interface ColorGroup {
 
 interface TokenStructure {
   primitive: { [colorName: string]: ColorGroup };
-  scale: { [colorName: string]: ColorGroup };
-  semantic: { [type: string]: ColorGroup };
+  semantic: { [colorName: string]: ColorGroup };
+  utility: { [type: string]: ColorGroup };
 }
 
 // CSS 변수를 파싱하는 함수
@@ -56,8 +59,8 @@ function parseCSSVariables(cssContent: string): Variables {
 function structureTokens(variables: Variables): TokenStructure {
   const tokens: TokenStructure = {
     primitive: {},
-    scale: {},
     semantic: {},
+    utility: {},
   };
 
   Object.entries(variables).forEach(([name, value]) => {
@@ -72,25 +75,25 @@ function structureTokens(variables: Variables): TokenStructure {
         }
       }
     }
-    // Scale colors (primary, secondary, success, danger, neutral, error)
+    // Semantic colors (primary, secondary, success, danger, neutral, error)
     else if (name.match(/^color-(primary|secondary|success|danger|neutral|error)-/)) {
       const match = name.match(/^color-([^-]+)-(.+)$/);
       if (match) {
         const [, colorName, shade] = match;
         if (colorName && shade) {
-          if (!tokens.scale[colorName]) tokens.scale[colorName] = {};
-          tokens.scale[colorName][shade] = value;
+          if (!tokens.semantic[colorName]) tokens.semantic[colorName] = {};
+          tokens.semantic[colorName][shade] = value;
         }
       }
     }
-    // Semantic colors (text-, bg-, border-)
+    // Utility colors (text-, bg-, border-)
     else if (name.match(/^color-(text|bg|border)-/)) {
       const match = name.match(/^color-([^-]+)-(.+)$/);
       if (match) {
         const [, type, purpose] = match;
         if (type && purpose) {
-          if (!tokens.semantic[type]) tokens.semantic[type] = {};
-          tokens.semantic[type][purpose] = value;
+          if (!tokens.utility[type]) tokens.utility[type] = {};
+          tokens.utility[type][purpose] = value;
         }
       }
     }
@@ -118,81 +121,81 @@ function generateTypeScriptCode(tokens: TokenStructure): string {
   return `// 이 파일은 자동 생성됩니다. 수정하지 마세요.
 // generate-tokens.ts 스크립트에 의해 생성됨
 
-export const semanticColors = {
-${generateObjectCode(tokens.semantic, 0)}
+export const utilityColors = {
+${generateObjectCode(tokens.utility, 0)}
 };
 
-export const scaleColors = {
-${generateObjectCode(tokens.scale, 0)}
+export const semanticColors = {
+${generateObjectCode(tokens.semantic, 0)}
 };
 
 export const primitiveColors = {
 ${generateObjectCode(tokens.primitive, 0)}
 };
 
-// Semantic color의 CSS 값
-export const semanticColorCSSValue = {
+// Utility color의 CSS 값
+export const utilityColorCSSValue = {
   text: {
-${Object.entries(tokens.semantic.text || {})
+${Object.entries(tokens.utility.text || {})
   .map(([key]) => `    ${key}: 'var(--color-text-${key})'`)
   .join(',\n')}
   },
   background: {
-${Object.entries(tokens.semantic.bg || {})
+${Object.entries(tokens.utility.bg || {})
   .map(([key]) => `    ${key}: 'var(--color-bg-${key})'`)
   .join(',\n')}
   },
   border: {
-${Object.entries(tokens.semantic.border || {})
+${Object.entries(tokens.utility.border || {})
   .map(([key]) => `    ${key}: 'var(--color-border-${key})'`)
   .join(',\n')}
   }
 };
 
-// 스토리북용 색상 데이터 구조 (Scale color 기준)
+// 스토리북용 색상 데이터 구조 (Semantic color 기준)
 export const colorTokens = {
   primary: {
-${Object.entries(tokens.scale.primary || {})
+${Object.entries(tokens.semantic.primary || {})
   .map(([key]) => `    ${key}: 'var(--color-primary-${key})'`)
   .join(',\n')}
   },
   secondary: {
-${Object.entries(tokens.scale.secondary || {})
+${Object.entries(tokens.semantic.secondary || {})
   .map(([key]) => `    ${key}: 'var(--color-secondary-${key})'`)
   .join(',\n')}
   },
   neutral: {
-${Object.entries(tokens.scale.neutral || {})
+${Object.entries(tokens.semantic.neutral || {})
   .map(([key]) => `    ${key}: 'var(--color-neutral-${key})'`)
   .join(',\n')}
   },
   success: {
-${Object.entries(tokens.scale.success || {})
+${Object.entries(tokens.semantic.success || {})
   .map(([key]) => `    ${key}: 'var(--color-success-${key})'`)
   .join(',\n')}
   },
   danger: {
-${Object.entries(tokens.scale.danger || {})
+${Object.entries(tokens.semantic.danger || {})
   .map(([key]) => `    ${key}: 'var(--color-danger-${key})'`)
   .join(',\n')}
   },
   error: {
-${Object.entries(tokens.scale.error || {})
+${Object.entries(tokens.semantic.error || {})
   .map(([key]) => `    ${key}: 'var(--color-error-${key})'`)
   .join(',\n')}
   }
 };
 
-// Scale color의 CSS 값: Primitive colors
-export const scaleColorCSSValues: { [key: string]: string } = {
-${Object.entries(tokens.scale)
+// Semantic color의 CSS 값: Primitive colors
+export const semanticColorCSSValues: { [key: string]: string } = {
+${Object.entries(tokens.semantic)
   .flatMap(([groupName, colors]) =>
     Object.entries(colors).map(
       ([shade, value]) => `  'var(--color-${groupName}-${shade})': '${value}'`
     )
   )
   .concat(
-    Object.entries(tokens.semantic).flatMap(([type, colors]) =>
+    Object.entries(tokens.utility).flatMap(([type, colors]) =>
       Object.entries(colors)
         .filter(([purpose, value]) => !value.includes(`--color-${type}-${purpose}`)) // 순환 참조 제거
         .map(([purpose, value]) => `  'var(--color-${type}-${purpose})': '${value}'`)
@@ -213,26 +216,26 @@ async function generateTokens(): Promise<void> {
       TAILWIND_CONFIG_PATH,
       'design-tokens/color-tokens/primitive-colors.css'
     );
-    const scaleColorsPath = path.join(
-      TAILWIND_CONFIG_PATH,
-      'design-tokens/color-tokens/scale-colors.css'
-    );
     const semanticColorsPath = path.join(
       TAILWIND_CONFIG_PATH,
       'design-tokens/color-tokens/semantic-colors.css'
     );
+    const utilityColorsPath = path.join(
+      TAILWIND_CONFIG_PATH,
+      'design-tokens/color-tokens/utility-colors.css'
+    );
 
     const primitiveCSS = fs.readFileSync(primitiveColorsPath, 'utf8');
-    const scaleCSS = fs.readFileSync(scaleColorsPath, 'utf8');
     const semanticCSS = fs.readFileSync(semanticColorsPath, 'utf8');
+    const utilityCSS = fs.readFileSync(utilityColorsPath, 'utf8');
 
     // CSS 변수 파싱
     const primitiveVars = parseCSSVariables(primitiveCSS);
-    const scaleVars = parseCSSVariables(scaleCSS);
     const semanticVars = parseCSSVariables(semanticCSS);
+    const utilityVars = parseCSSVariables(utilityCSS);
 
     // 모든 변수 병합
-    const allVariables = { ...primitiveVars, ...scaleVars, ...semanticVars };
+    const allVariables = { ...primitiveVars, ...semanticVars, ...utilityVars };
 
     // 토큰 구조화
     const tokens = structureTokens(allVariables);
