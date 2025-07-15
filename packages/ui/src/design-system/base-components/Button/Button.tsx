@@ -1,5 +1,5 @@
 import type { ElementType } from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '@ui/utils/cn';
 
 export interface ButtonOwnProps<T extends ElementType = 'button'> {
   children: React.ReactNode;
@@ -16,6 +16,7 @@ export interface ButtonOwnProps<T extends ElementType = 'button'> {
   className?: string;
   isDisabled?: boolean;
   isFullWidth?: boolean;
+  isTransparent?: boolean;
 }
 
 type ButtonProps<T extends ElementType = 'button'> = ButtonOwnProps<T> &
@@ -73,12 +74,13 @@ const Button = <T extends ElementType = 'button'>({
   className,
   isDisabled = false,
   isFullWidth = true,
+  isTransparent = false,
   ...restprops
 }: ButtonProps<T>) => {
   const Component = (as || 'button') as ElementType;
 
   const sizeClass = SIZES[size];
-  const colorClass = COLORS[color][variant];
+  const colorClass = !isTransparent ? COLORS[color][variant] : 'bg-transparent';
   const roundedClass = ROUNDEDS[rounded];
 
   return (
