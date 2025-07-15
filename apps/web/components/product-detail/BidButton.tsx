@@ -1,5 +1,7 @@
 'use client';
 
+import { API_ROUTES } from '@/constants/routes';
+
 interface BidButtonProps {
   productId: number;
   currentPrice: number;
@@ -7,16 +9,14 @@ interface BidButtonProps {
 
 const BidButton = ({ productId, currentPrice }: BidButtonProps) => {
   const handleBid = async () => {
-    const isConfirmed = confirm(
-      `${currentPrice.toLocaleString()}원에 입찰하시겠습니까?`
-    );
+    const isConfirmed = confirm(`${currentPrice.toLocaleString()}원에 입찰하시겠습니까?`);
 
     if (!isConfirmed) {
       return;
     }
 
     try {
-      const response = await fetch('/api/bids', {
+      const response = await fetch(API_ROUTES.BIDS, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
