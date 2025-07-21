@@ -4,7 +4,7 @@ import { Button } from '@repo/ui/components';
 
 import { ImageUpload } from '@/components/product-register';
 
-import { useProductForm } from '@/hooks/products';
+import { useProductForm } from '@/hooks';
 
 import DecreaseUnitField from './DecreaseUnitField';
 import DescriptionField from './DescriptionField';
