@@ -2,7 +2,14 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "types": ["node"],
+    "baseUrl": "./src",
+    "paths": {
+      "@ui/*": ["./*"],
+      "@ui/components": ["./design-system/base-components"],
+      "@ui/components/*": ["./design-system/base-components/*"],
+    }
   },
   "include": ["src", "**/*.cjs", "postcss.config.mjs", "postcss.config.js"],
   "exclude": ["dist", "build", "node_modules"]

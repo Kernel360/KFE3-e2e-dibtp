@@ -32,3 +32,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+/lib/prisma/generated/prisma
+
+# Sentry Config File
+.env.sentry-build-plugin
